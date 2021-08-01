@@ -1,3 +1,12 @@
+/**
+ * request the quiz questions data based on category and/or difficulty parameters chosen
+ * if parameters are undefined random categories or dificculties are set
+ * difficulties and categories possible are in the html document (as in the API docs)
+ * API used: Open Trivia Database (opentdb.com)
+ * @param {String | undefined} category the category to be requested (e.g. animals) - if undefined "random" will be requested
+ * @param {String | undefined} difficulty the difficulty to be requested (e.g. easy) - if undefined "random" will be requested
+ * @returns {String} the data fetched
+ */
 async function getData(category, difficulty) {
   try {
     console.log('get data:', category, difficulty)
