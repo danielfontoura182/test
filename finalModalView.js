@@ -1,7 +1,7 @@
-import View from './View.js';
+import View from './View.js'
 
 class FinalModalView extends View {
-  _parentElement = document.querySelector('body');
+  _parentElement = document.querySelector('body')
 
   _generateMarkup(total, score) {
     return `
@@ -18,13 +18,13 @@ class FinalModalView extends View {
             <button class="btn__start close-modal play-again">click to play again</button>  
         </div>
     </div>
-      `;
+      `
   }
 
   render(total, score) {
-    const markup = this._generateMarkup(total, score);
-    this._parentElement.insertAdjacentHTML('beforeend', markup);
+    const markup = this._generateMarkup(total, score)
+    this._parentElement.insertAdjacentHTML('beforeend', markup)
   }
 }
 
-export default new FinalModalView();
+export default new FinalModalView()

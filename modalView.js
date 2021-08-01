@@ -1,10 +1,10 @@
-import View from "./View.js";
+import View from './View.js'
 
 class ModalView extends View {
-  _parentElement = document.querySelector("body");
+  _parentElement = document.querySelector('body')
 
   _generateMarkup(answer, idx) {
-    console.log(answer);
+    console.log(answer)
     if (answer === this._data[idx].correct_answer.normalize()) {
       return `
       <div class="modal">
@@ -13,7 +13,7 @@ class ModalView extends View {
             <button class="btn__start close-modal">next question</button>
         </div>
     </div>
-      `;
+      `
     }
 
     return `
@@ -29,8 +29,8 @@ class ModalView extends View {
             <button class="btn__start close-modal">next question</button>
         </div>
     </div>
-      `;
+      `
   }
 }
 
-export default new ModalView();
+export default new ModalView()

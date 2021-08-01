@@ -1,13 +1,13 @@
-import View from "./View.js";
+import View from './View.js'
 
 class CarouselView extends View {
-  _parentElement = document.querySelector(".carousel");
+  _parentElement = document.querySelector('.carousel')
 
   _generateMarkup() {
     const markup = this._data
       .map((q, idx) => {
-        const answers = q.incorrect_answers;
-        answers.push(q.correct_answer);
+        const answers = q.incorrect_answers
+        answers.push(q.correct_answer)
         return `
         <div class="carousel__item" data-id="${idx}">
           <div class="carousel__info">
@@ -21,19 +21,19 @@ class CarouselView extends View {
             ${answers
               .sort()
               .map((a) => `<span class= "answer"> ${a} </span>`)
-              .join("")}
+              .join('')}
           </div>
         </div>
-        `;
+        `
       })
-      .join("");
+      .join('')
 
-    return markup;
+    return markup
   }
 
   handleHandler(handler) {
-    window.addEventListener("load", handler);
+    window.addEventListener('load', handler)
   }
 }
 
-export default new CarouselView();
+export default new CarouselView()

@@ -1,7 +1,7 @@
-import View from './View.js';
+import View from './View.js'
 
 class ProgressView extends View {
-  _parentElement = document.querySelector('body');
+  _parentElement = document.querySelector('body')
 
   _generateMarkup() {
     return `
@@ -10,8 +10,8 @@ class ProgressView extends View {
         >${this._data.length}</span
       >
     </div>
-      `;
+      `
   }
 }
 
-export default new ProgressView();
+export default new ProgressView()
