@@ -4,7 +4,7 @@ import modalView from './modalView.js'
 import progressView from './progressView.js'
 import finalModalView from './finalModalView.js'
 
-const helperVariables = {
+const controllerHelperVariables = {
   carouselItems: null,
   userScore: null,
   current_carousel_question: null,
@@ -34,15 +34,17 @@ async function controlQuestions(category, difficulty) {
     carouselView.render(model.state.questions)
 
     // positioning questions
-    helperVariables.carouselItems = document.querySelectorAll('.carousel__item')
-    helperVariables.carouselItems.forEach((q, idx) => {
+    controllerHelperVariables.carouselItems =
+      document.querySelectorAll('.carousel__item')
+    controllerHelperVariables.carouselItems.forEach((q, idx) => {
       q.style.transform = `translateX(${idx * 100}%)`
     })
 
     // creating progress element
     progressView.render(model.state.questions)
-    helperVariables.questionNumber = document.querySelector('.question-number')
-    helperVariables.progress = document.querySelector('.progress')
+    controllerHelperVariables.questionNumber =
+      document.querySelector('.question-number')
+    controllerHelperVariables.progress = document.querySelector('.progress')
 
     // event listener on next-question and answer click
     const carousel = document.querySelector('.carousel')
@@ -80,33 +82,33 @@ function controlMoveCarousel(cur) {
 
 function updateQuestionNumber() {
   if (
-    helperVariables.current_question ===
-    helperVariables.carouselItems.length - 1
+    controllerHelperVariables.current_question ===
+    controllerHelperVariables.carouselItems.length - 1
   ) {
-    helperVariables.current_question = 0
-    helperVariables.progress.style.display = 'none'
+    controllerHelperVariables.current_question = 0
+    controllerHelperVariables.progress.style.display = 'none'
     return
   }
   setTimeout(() => {
-    helperVariables.current_question++
-    helperVariables.questionNumber.textContent =
-      helperVariables.current_question
-    helperVariables.progress.style.display = 'block'
+    controllerHelperVariables.current_question++
+    controllerHelperVariables.questionNumber.textContent =
+      controllerHelperVariables.current_question
+    controllerHelperVariables.progress.style.display = 'block'
   }, 300)
 }
 
 // control next question based on current_carousel_question
 function controlNextQuestion() {
   if (
-    helperVariables.current_carousel_question ===
-    helperVariables.carouselItems.length - 1
+    controllerHelperVariables.current_carousel_question ===
+    controllerHelperVariables.carouselItems.length - 1
   ) {
-    helperVariables.current_carousel_question = 0
+    controllerHelperVariables.current_carousel_question = 0
   } else {
-    helperVariables.current_carousel_question++
+    controllerHelperVariables.current_carousel_question++
   }
 
-  controlMoveCarousel(helperVariables.current_carousel_question)
+  controlMoveCarousel(controllerHelperVariables.current_carousel_question)
   updateQuestionNumber()
 }
 
@@ -128,7 +130,7 @@ function controlGameEnd(modalToClose, total, score) {
   const modal = document.querySelector('.modal')
   toggleModal(modal)
   const playAgain = modal.querySelector('.play-again')
-  controlBestScore(helperVariables.userScore)
+  controlBestScore(controllerHelperVariables.userScore)
   playAgain.addEventListener('click', () => {
     window.location.reload()
   })
@@ -141,12 +143,12 @@ function controlModal(answer, idx) {
   const modal = document.querySelector('.modal')
   toggleModal(modal)
   const closeModal = document.querySelector('.close-modal')
-  if (idx === helperVariables.carouselItems.length - 2) {
+  if (idx === controllerHelperVariables.carouselItems.length - 2) {
     closeModal.addEventListener('click', () => {
       controlGameEnd(
         modal,
-        helperVariables.carouselItems.length - 1,
-        helperVariables.userScore
+        controllerHelperVariables.carouselItems.length - 1,
+        controllerHelperVariables.userScore
       )
     })
     return
@@ -159,7 +161,7 @@ function controlModal(answer, idx) {
 // sum up 1 to userScore variable after every right answer
 function controlScore(answer, idx) {
   if (answer === model.state.questions[idx].correct_answer.normalize()) {
-    helperVariables.userScore++
+    controllerHelperVariables.userScore++
   }
 }
 
@@ -182,9 +184,9 @@ function controlBestScore(score = null) {
 }
 
 function init(category, difficulty) {
-  helperVariables.userScore = 0
-  helperVariables.current_carousel_question = 0
-  helperVariables.current_question = 0
+  controllerHelperVariables.userScore = 0
+  controllerHelperVariables.current_carousel_question = 0
+  controllerHelperVariables.current_question = 0
   carouselView.handleHandler(controlQuestions(category, difficulty))
 }
 
