@@ -1,8 +1,8 @@
 import * as model from './model.js'
-import carouselView from './carouselView.js'
-import modalView from './modalView.js'
-import progressView from './progressView.js'
-import finalModalView from './finalModalView.js'
+import carouselView from './views/carouselView.js'
+import modalView from './views/modalView.js'
+import progressView from './views/progressView.js'
+import finalModalView from './views/finalModalView.js'
 
 const controllerHelperVariables = {
   carouselItems: null,
@@ -11,9 +11,8 @@ const controllerHelperVariables = {
   current_question: null,
   questionNumber: null,
   progress: null,
+  bestScoreEl: document.querySelector('.best-score-value'),
 }
-
-const bestScoreEl = document.querySelector('.best-score-value')
 
 async function controlQuestions(category, difficulty) {
   try {
@@ -180,7 +179,8 @@ function controlBestScore(score = null) {
     return
   }
 
-  bestScoreEl.textContent = localStorage.getItem('score')
+  controllerHelperVariables.bestScoreEl.textContent =
+    localStorage.getItem('score')
 }
 
 function init(category, difficulty) {
