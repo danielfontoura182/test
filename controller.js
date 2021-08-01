@@ -4,13 +4,15 @@ import modalView from './modalView.js'
 import progressView from './progressView.js'
 import finalModalView from './finalModalView.js'
 
-// helper variables
-let carouselItems
-let userScore
-let current_carousel_question
-let current_question
-let questionNumber
-let progress
+const helperVariables = {
+  carouselItems: null,
+  userScore: null,
+  current_carousel_question: null,
+  current_question: null,
+  questionNumber: null,
+  progress: null,
+}
+
 const bestScoreEl = document.querySelector('.best-score-value')
 
 async function controlQuestions(category, difficulty) {
@@ -32,15 +34,15 @@ async function controlQuestions(category, difficulty) {
     carouselView.render(model.state.questions)
 
     // positioning questions
-    carouselItems = document.querySelectorAll('.carousel__item')
-    carouselItems.forEach((q, idx) => {
+    helperVariables.carouselItems = document.querySelectorAll('.carousel__item')
+    helperVariables.carouselItems.forEach((q, idx) => {
       q.style.transform = `translateX(${idx * 100}%)`
     })
 
     // creating progress element
     progressView.render(model.state.questions)
-    questionNumber = document.querySelector('.question-number')
-    progress = document.querySelector('.progress')
+    helperVariables.questionNumber = document.querySelector('.question-number')
+    helperVariables.progress = document.querySelector('.progress')
 
     // event listener on next-question and answer click
     const carousel = document.querySelector('.carousel')
@@ -77,27 +79,34 @@ function controlMoveCarousel(cur) {
 }
 
 function updateQuestionNumber() {
-  if (current_question === carouselItems.length - 1) {
-    current_question = 0
-    progress.style.display = 'none'
+  if (
+    helperVariables.current_question ===
+    helperVariables.carouselItems.length - 1
+  ) {
+    helperVariables.current_question = 0
+    helperVariables.progress.style.display = 'none'
     return
   }
   setTimeout(() => {
-    current_question++
-    questionNumber.textContent = current_question
-    progress.style.display = 'block'
+    helperVariables.current_question++
+    helperVariables.questionNumber.textContent =
+      helperVariables.current_question
+    helperVariables.progress.style.display = 'block'
   }, 300)
 }
 
 // control next question based on current_carousel_question
 function controlNextQuestion() {
-  if (current_carousel_question === carouselItems.length - 1) {
-    current_carousel_question = 0
+  if (
+    helperVariables.current_carousel_question ===
+    helperVariables.carouselItems.length - 1
+  ) {
+    helperVariables.current_carousel_question = 0
   } else {
-    current_carousel_question++
+    helperVariables.current_carousel_question++
   }
 
-  controlMoveCarousel(current_carousel_question)
+  controlMoveCarousel(helperVariables.current_carousel_question)
   updateQuestionNumber()
 }
 
@@ -119,7 +128,7 @@ function controlGameEnd(modalToClose, total, score) {
   const modal = document.querySelector('.modal')
   toggleModal(modal)
   const playAgain = modal.querySelector('.play-again')
-  controlBestScore(userScore)
+  controlBestScore(helperVariables.userScore)
   playAgain.addEventListener('click', () => {
     window.location.reload()
   })
@@ -132,9 +141,13 @@ function controlModal(answer, idx) {
   const modal = document.querySelector('.modal')
   toggleModal(modal)
   const closeModal = document.querySelector('.close-modal')
-  if (idx === carouselItems.length - 2) {
+  if (idx === helperVariables.carouselItems.length - 2) {
     closeModal.addEventListener('click', () => {
-      controlGameEnd(modal, carouselItems.length - 1, userScore)
+      controlGameEnd(
+        modal,
+        helperVariables.carouselItems.length - 1,
+        helperVariables.userScore
+      )
     })
     return
   }
@@ -146,7 +159,7 @@ function controlModal(answer, idx) {
 // sum up 1 to userScore variable after every right answer
 function controlScore(answer, idx) {
   if (answer === model.state.questions[idx].correct_answer.normalize()) {
-    userScore++
+    helperVariables.userScore++
   }
 }
 
@@ -169,9 +182,9 @@ function controlBestScore(score = null) {
 }
 
 function init(category, difficulty) {
-  userScore = 0
-  current_carousel_question = 0
-  current_question = 0
+  helperVariables.userScore = 0
+  helperVariables.current_carousel_question = 0
+  helperVariables.current_question = 0
   carouselView.handleHandler(controlQuestions(category, difficulty))
 }
 
