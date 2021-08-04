@@ -168,7 +168,7 @@ function controlScore(answer, idx) {
 // check if the current round score is greater than the previous one
 // if it is, set the new score to the local storage
 // set the score to bestScore element
-function controlBestScore(score = null) {
+function controlBestScore(score = 0) {
   if (+localStorage.getItem('score') < score) {
     localStorage.setItem('score', score)
     return

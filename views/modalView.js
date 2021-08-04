@@ -4,7 +4,6 @@ class ModalView extends View {
   _parentElement = document.querySelector('body')
 
   _generateMarkup(answer, idx) {
-    console.log(answer)
     if (answer === this._data[idx].correct_answer.normalize()) {
       return `
       <div class="modal">

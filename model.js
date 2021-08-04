@@ -9,7 +9,6 @@
  */
 async function getData(category, difficulty) {
   try {
-    console.log('get data:', category, difficulty)
     const res = await fetch(
       `https://opentdb.com/api.php?amount=10${
         category ? `&category=${category}` : ''
@@ -20,7 +19,6 @@ async function getData(category, difficulty) {
       throw new Error('Error trying to fetch the quiz questions data.')
 
     const data = await res.json()
-    console.log(data.results)
     return data.results
   } catch (err) {
     console.log(err)
