@@ -10,19 +10,19 @@
 
 ## Features
 
-### Questions
+#### Questions
 
     - There are 24 categories and 3 difficulty levels.
     - 10 questions are loaded per round
     - Every answer is checked and a modal pops with the veredict
     - If the answer is wrong, the right answer is showed on the modal
 
-### Best score
+#### Best score
 
     - Tracked every round
     - Showed on the page
 
-### Game end
+#### Game end
 
     - A final modal pops after the last question with the final score and a button to play again
 
