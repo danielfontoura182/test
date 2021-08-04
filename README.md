@@ -1,20 +1,14 @@
 # THE QUIZ
 
----
-
-## **The Quiz** is a simple quiz game. The purpose of doing this project was to practice DOM manipulation, JavaScript asynchronus features and programming logic. **Object-oriented programming** (OOP) used as paradigm.
+**The Quiz** is a simple quiz game. The purpose of doing this project was to practice DOM manipulation, JavaScript asynchronus features and programming logic. **Object-oriented programming** (OOP) used as paradigm.
 
 ## Technologies
-
----
 
 - HTML
 - CSS
 - JavaScript
 
 ## Features
-
----
 
 ### Questions
 
@@ -32,19 +26,11 @@
 
     - A final modal pops after the last question with the final score and a button to play again
 
-#### Best score
-
-    Best score is
-
 ## How to play
-
----
 
 Select your desired category and/or difficulty on the initial page, then click on the "START" button.
 If no category and/or difficulty is selected, random is set as default.
 
 ## API
-
----
 
 In this project, an API called [Open Trivia API](https://opentdb.com/) was used to power it with quiz questions.
